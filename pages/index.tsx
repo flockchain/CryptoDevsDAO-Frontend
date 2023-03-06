@@ -312,6 +312,15 @@ export default function Home(){
     else if (nftBalance === 0) 
     {
       return(
+        <div className={styles.description}>
+          You do not own any CryptoDevs NFTs. <br />
+          <b>You can not crete or vote on Proposals</b>
+        </div>
+      );
+    }
+    else
+    {
+      return(
         <div className={styles.container}>
           <label>Fake NFT Token ID to Purchase: </label>
           <input
