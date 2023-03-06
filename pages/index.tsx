@@ -233,7 +233,7 @@ export default function Home(){
 
       if(needSigner)
       {
-        const signer = web3Provider.getSigner();
+        const signer: any = web3Provider.getSigner();
         return signer;
       }
       return web3Provider;
@@ -283,5 +283,52 @@ export default function Home(){
       fetchAllProposals();
     }
   }, [selectedTab]);
+
+  //renders the 'Create Proposal' tab
+  function renderTabs()
+  {
+    if(selectedTab === "Create Proposal")
+    {
+      return renderCreateProposalTab();
+    }
+    else if(selectedTab === "View Proposals")
+    {
+      return renderViewProposalsTab();
+    }
+
+    return null;
+  }
+
+  //Renders the 'Create Proposal' tab content
+  function renderCreateProposalTab()
+  {
+    if(loading){
+      return(
+        <div className={styles.description}>
+          Loading... Waiting for transaction...
+        </div>
+      );
+    }
+    else if (nftBalance === 0) 
+    {
+      return(
+        <div className={styles.container}>
+          <label>Fake NFT Token ID to Purchase: </label>
+          <input
+            placeholder="0"
+            type="number"
+            onChange={(e) => setFakeNftTokenID(e.target.value)}
+          />
+          <button className={styles.button2} onClick={createProposal}>
+            Create
+          </button>
+        </div>
+      );
+    }
+  }
+
+  function renderViewProposalsTab(){
+
+  }
 
 }
